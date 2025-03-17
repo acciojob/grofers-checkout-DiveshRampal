@@ -1,8 +1,6 @@
 // Create a button element for calculating the total price
 const getSumBtn = document.createElement("button");
 getSumBtn.append("Get Total Price");
-
-// Append the button to the body so it can be seen on the page
 document.body.appendChild(getSumBtn);
 
 // Function to calculate the total price of all items
@@ -18,22 +16,16 @@ const getSum = () => {
     total += price;  // Add to the total
   });
 
-  // Create a new row for displaying the total price
-  const table = document.querySelector('table');
-  const totalRow = document.createElement('tr');  // Create a new table row for the total
-
-  // Create a cell for the "Total" text
-  const totalCell1 = document.createElement('td');
-  totalCell1.textContent = "Total";
-  totalRow.appendChild(totalCell1);  // Add the "Total" text to the row
-
-  // Create a cell for displaying the total price
-  const totalCell2 = document.createElement('td');
-  totalCell2.textContent = total;  // Display the total sum of prices
-  totalRow.appendChild(totalCell2);  // Add the total price cell to the row
-
-  // Append the total row to the table
-  table.appendChild(totalRow);
+  // Create or update the element with id 'ans' to show the total price
+  let ansElement = document.querySelector('#ans');
+  if (!ansElement) {
+    ansElement = document.createElement('div');  // Create a new element if it doesn't exist
+    ansElement.id = 'ans';  // Assign the id 'ans'
+    document.body.appendChild(ansElement);  // Append it to the body
+  }
+  
+  // Update the content of the 'ans' element with the total
+  ansElement.textContent = `Total: Rs ${total}`;
 };
 
 // Attach an event listener to the button to calculate the total when clicked
